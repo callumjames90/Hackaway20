@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateClusterTable extends Migration
+class CreateClustersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateClusterTable extends Migration
      */
     public function up()
     {
-        Schema::create('cluster', function (Blueprint $table) {
+        Schema::create('clusters', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->double('latitude');
             $table->float('rating_avg');
@@ -29,6 +29,6 @@ class CreateClusterTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cluster');
+        Schema::dropIfExists('clusters');
     }
 }

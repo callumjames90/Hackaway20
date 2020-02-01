@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Cluster extends Model
+class Cluster extends \Jenssegers\Mongodb\Eloquent\Model
 {
 
 }
