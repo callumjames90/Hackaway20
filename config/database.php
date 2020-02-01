@@ -59,7 +59,6 @@ return [
             'database' => 'my_data',
         ],
 
-
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
