@@ -25,13 +25,13 @@
             var marker = new google.maps.Marker({position: center, map: map});
 
             if (navigator.geolocation) {
-                <!--
+                /*
                 navigator.geolocation.getCurrentPosition(function (position) {
                     var pos = {
                         lat: position.coords.latitude,
                         lng: position.coords.longitude
                     };
-                    map.setCenter(pos);-->
+                    map.setCenter(pos);*/
 
                 var heatmapData = [
                     new google.maps.LatLng(37.782, -122.447),
@@ -50,14 +50,14 @@
                     new google.maps.LatLng(37.785, -122.435)
                 ];
 
-                heatmap = new google.maps.visualisation.HeatmapLayer({
+                heatmap = new google.maps.visualization.HeatmapLayer({
                     data: heatmapData
                 });
-                heatmap.setMap(map)
+                heatmap.setMap(map);
             }
         }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPhnYv7qqmn9NK7IweTP07rggklVMCc2U&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPhnYv7qqmn9NK7IweTP07rggklVMCc2U&callback=initMap&libraries=visualization" async defer></script>
 </div>
 
 <div class="container">
