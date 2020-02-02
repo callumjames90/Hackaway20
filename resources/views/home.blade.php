@@ -3,43 +3,68 @@
 @extends('layouts.navbar')
 
 @section('content')
-<div class="container">
 
-    <meta name="csrf-token" content="{{ csrf_token() }}"/>
+<div id="map" class="container-fluid" style="height: 80%">
+    <script>
+        var map;
 
-    <style>
-        #map {
-            height: 80%;
-        }
-    </style>
-    <div id="map" class="container-fluid">
-        <script>
-            var map;
+        function initMap() {
+            var center = {lat: 51.4, lng: -0.56};
 
-            function initMap() {
-                var center = {lat: 0, lng: 0};
-                map = new google.maps.Map(document.getElementById('map'), {
-                    center: center,
-                    zoom: 4,
-                    draggable: true,
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: center,
+                zoom: 15,
+                draggable: true,
+                zoomControl: true,
+                mapTypeControl: false,
+                scaleControl: false,
+                rotateControl: false,
+                fullscreenControl: true,
+                streetViewControl: false,
+            });
+            var marker = new google.maps.Marker({position: center, map: map});
+
+            if (navigator.geolocation) {
+                <!--
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    map.setCenter(pos);-->
+
+                var heatmapData = [
+                    new google.maps.LatLng(37.782, -122.447),
+                    new google.maps.LatLng(37.782, -122.445),
+                    new google.maps.LatLng(37.782, -122.443),
+                    new google.maps.LatLng(37.782, -122.441),
+                    new google.maps.LatLng(37.782, -122.439),
+                    new google.maps.LatLng(37.782, -122.437),
+                    new google.maps.LatLng(37.782, -122.435),
+                    new google.maps.LatLng(37.785, -122.447),
+                    new google.maps.LatLng(37.785, -122.445),
+                    new google.maps.LatLng(37.785, -122.443),
+                    new google.maps.LatLng(37.785, -122.441),
+                    new google.maps.LatLng(37.785, -122.439),
+                    new google.maps.LatLng(37.785, -122.437),
+                    new google.maps.LatLng(37.785, -122.435)
+                ];
+
+                heatmap = new google.maps.visualisation.HeatmapLayer({
+                    data: heatmapData
                 });
-
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(function(position) {
-                        var pos = {
-                            lat: position.coords.latitude,
-                            lng: position.coords.longitude
-                        };
-                        map.setCenter(pos);
-                    });
-                }
-
-                @foreach($reviews as $review)
-                    var marker = new google.maps.Marker({position: { lat: {{ $review->latitude }}, lng: {{ $review->longitude }} }, map: map});
-                @endforeach
+                heatmap.setMap(map)
             }
-        </script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPhnYv7qqmn9NK7IweTP07rggklVMCc2U&callback=initMap" async defer></script>
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPhnYv7qqmn9NK7IweTP07rggklVMCc2U&callback=initMap" async defer></script>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+        </div>
     </div>
 </div>
 @endsection
