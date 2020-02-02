@@ -1,5 +1,9 @@
 $font: 'Noto Sans', sans-serif;
 
+#map {
+    padding-bottom: 100px;
+}
+
 .top-section {
     padding-top: 2.5%;
 }
@@ -8,9 +12,6 @@ $font: 'Noto Sans', sans-serif;
     width: 50%;
     text-align: center;
     justify-content: space-between;
-}
-.rating-item {
-
 }
 
 .rating {
@@ -28,6 +29,7 @@ $font: 'Noto Sans', sans-serif;
     }
     &__input {
         display:none;
+
     }
     &__label {
         padding: 5px 3px;
@@ -35,10 +37,13 @@ $font: 'Noto Sans', sans-serif;
         filter:grayscale(1);
         opacity:.7;
         cursor:pointer;
-        &.active {
+        /*&.active {
             filter:grayscale(0);
             opacity: 1;
             transition: all 100ms ease;
+        }*/
+        &:valid {
+            background-color:red;
         }
         &:hover {
             filter:grayscale(.84);
@@ -48,8 +53,13 @@ $font: 'Noto Sans', sans-serif;
     }
 }
 
-.form-control {
+.form-control-create {
+    @extend .form-control !optional;
     width: 100%;
     padding-bottom: 100px;
     margin-bottom: 5%;
+}
+
+.current.btn-lg.btn-info {
+    width: 100%;
 }

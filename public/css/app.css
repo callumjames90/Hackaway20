@@ -1,3 +1,7 @@
+#map {
+  padding-bottom: 100px;
+}
+
 .top-section {
   padding-top: 2.5%;
 }
@@ -33,14 +37,15 @@
           filter: grayscale(1);
   opacity: 0.7;
   cursor: pointer;
+  /*&.active {
+      filter:grayscale(0);
+      opacity: 1;
+      transition: all 100ms ease;
+  }*/
 }
 
-.rating__label.active {
-  -webkit-filter: grayscale(0);
-          filter: grayscale(0);
-  opacity: 1;
-  -webkit-transition: all 100ms ease;
-  transition: all 100ms ease;
+.rating__label:valid {
+  background-color: red;
 }
 
 .rating__label:hover {
@@ -52,9 +57,13 @@
   transition: 250ms ease;
 }
 
-.form-control {
+.form-control-create {
   width: 100%;
   padding-bottom: 100px;
   margin-bottom: 5%;
+}
+
+.current.btn-lg.btn-info {
+  width: 100%;
 }
 
