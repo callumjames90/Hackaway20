@@ -49,7 +49,12 @@
                     data: heatmapData
                 });
                 heatmap.setOptions({
-                    radius: 50,
+                    radius: 100,
+                    gradient: ["rgba(255,104,203,0)",
+                                "rgba(252,66,50,0)",
+                                "rgba(252,179,55,20)",
+                                "rgba(252,255,105,20)",
+                                "rgba(89,238,69,0.5)"]
                 });
                 heatmap.setMap(map);
             }
