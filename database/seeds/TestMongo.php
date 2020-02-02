@@ -19,6 +19,13 @@ class TestMongo extends Seeder
                 'password' => Hash::make('hunter2'),
                 'created_at' => now(),
                 'updated_at' => now()
+            ],
+            [
+                'name' => 'henter1',
+                'email' => 'henter1@henter1.com',
+                'password' => Hash::make('henter1'),
+                'created_at' => now(),
+                'updated_at' => now()
             ]
         ];
 
