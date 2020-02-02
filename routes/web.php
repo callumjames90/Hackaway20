@@ -17,7 +17,4 @@ Auth::routes();
 
 Route::get('/review', 'ReviewController@index');
 
-Route::get('/profile', 'ProfileController@index');
-
-Route::get('/review/create', 'ReviewController@create');
-Route::post('/review', 'ReviewController@store');
+Route::get('/profile', 'ProfileController@index')->name('profile');
