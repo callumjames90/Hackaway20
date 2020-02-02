@@ -35,6 +35,6 @@ class User extends \Jenssegers\Mongodb\Eloquent\Model implements
     ];
 
     public function reviews() {
-        return $this->hasMany('App\Review');
+        return $this->hasMany('App\Review')->orderBy("created_at", "desc");
     }
 }

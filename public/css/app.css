@@ -1,7 +1,3 @@
-#map {
-  padding-bottom: 100px;
-}
-
 #describe {
   font-size: 20px;
 }
@@ -64,5 +60,26 @@
 
 .current.btn-lg.btn-info {
   width: 100%;
+}
+
+.icon-header {
+  position: relative;
+  text-align: center;
+}
+
+.fa.fa-user-circle-o {
+  font-size: 150px;
+}
+
+.info-display {
+  text-align: center;
+}
+
+.card-footer {
+  font-size: 11px;
+}
+
+.card-footer.rev {
+  font-size: 14px;
 }
 
