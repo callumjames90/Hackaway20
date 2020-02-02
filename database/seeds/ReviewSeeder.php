@@ -16,7 +16,7 @@ class ReviewSeeder extends Seeder
     public function run()
     {
         $csvFileName = "Coord.csv";
-        $csvFile = public_path('..\\database\seeds\\' . $csvFileName);
+        $csvFile = public_path('../database/seeds/' . $csvFileName);
         $lines = $this->readCSV($csvFile,array('delimiter' => ','));
         foreach ($lines as $line) {
             if (!$line) break;
