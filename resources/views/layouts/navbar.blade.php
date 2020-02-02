@@ -5,7 +5,7 @@
                 <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/review">Review</a>
+                <a class="nav-link" href="/review/create">Review</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ Request::route()->getName() === 'profile' ? 'active' : '' }}" href="/profile">Profile</a>

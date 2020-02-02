@@ -60,7 +60,7 @@
         <div class="row justify-content-center">
             <div class="top-section col-xl-8 col-lg-9 col-md-10 col-12 text-center mb-5">
                 <div class="current-rating">
-                    <h2 class="average-rating">(avg rating)</h2>
+                    <h1 class="average-rating">(avg rating)</h1>
                     <h2 class="out-of">out of 5</h2>
                 </div>
                 <div class="review-for text-center">
@@ -91,8 +91,8 @@
                     </div>
                 </h3>
                 <div class="form-group text-center">
-                    <label for="description"> Describe the safety of the area: </label>
-                    <textarea class="form-control" placeholder="Description" name="description"></textarea>
+                    <label id="describe" for="description"> Describe the safety of the area: </label>
+                    <textarea class="form-control desc" placeholder="Description" name="description"></textarea>
                     <button class="submit btn btn-primary">Submit Review</button>
                 </div>
             </form>
