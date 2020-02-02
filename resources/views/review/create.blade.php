@@ -14,16 +14,35 @@
     <div id="map" class="container-fluid">
         <script>
             var map;
+
             function initMap() {
+                var center = {lat: 0, lng: 0};
                 map = new google.maps.Map(document.getElementById('map'), {
-                    center: {lat: -34.397, lng: 150.644},
+                    center: center,
                     zoom: 8,
-                    draggable: false
+                    draggable: false,
                 });
+                var marker = new google.maps.Marker({position: center, map: map});
             }
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPhnYv7qqmn9NK7IweTP07rggklVMCc2U&callback=initMap" async defer></script>
     </div>
+
+    <script>
+        function getPosition(position, errorHandler) {
+            userLatitude = position.coords.latitude;
+            userLongitude = position.coords.longitude;
+            latlng = google.maps.LatLng(userLatitude, userLongitude);
+            document.getElementById("map").setCenter(latlng);
+        }
+
+        function setCurrentLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(getPosition);
+            }
+        }
+    </script>
+    <button onclick="setCurrentLocation()">Set Location</button>
 
     <div class="container">
         <div class = "row justify-content-center">
