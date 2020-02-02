@@ -34,4 +34,7 @@ class User extends \Jenssegers\Mongodb\Eloquent\Model implements
         'password', 'remember_token',
     ];
 
+    public function reviews() {
+        return $this->hasMany('App\Review');
+    }
 }

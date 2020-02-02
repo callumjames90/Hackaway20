@@ -26,6 +26,27 @@ class TestMongo extends Seeder
                 'password' => Hash::make('henter1'),
                 'created_at' => now(),
                 'updated_at' => now()
+            ],
+            [
+                'name' => 'benter3',
+                'email' => 'benter3@benter3.com',
+                'password' => Hash::make('benter3'),
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'name' => 'ginger0',
+                'email' => 'ginger0@ginger0.com',
+                'password' => Hash::make('ginger0'),
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+            [
+                'name' => 'shrineIsle',
+                'email' => 'shrineIsle@shrineIsle.com',
+                'password' => Hash::make('shrineIsle'),
+                'created_at' => now(),
+                'updated_at' => now()
             ]
         ];
 

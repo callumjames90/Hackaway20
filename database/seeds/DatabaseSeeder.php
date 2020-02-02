@@ -11,7 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(ReviewSeeder::class);
         $this->call(TestMongo::class);
+        $this->call(ReviewSeeder::class);
     }
 }

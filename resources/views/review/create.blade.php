@@ -69,25 +69,25 @@
                 </div>
             </div>
 
-            <form class="rating" method="post" action="/review">
+            <form class="rating" method="post" action="/review" name="myForm">
                 @csrf
                 <input type="hidden" value="" id="latAndLon" name="location"/>
                 <h3 class="rating-title text-center">Please review:
                     <div class="rating-list">
-                        <input class="rating__input rating-1" id="rating-1-2" type="radio" value="1" name="ratings"/>
-                        <label class="rating__label rating--1" for="rating-1-2"><i class="fa fa-times" aria-hidden="true"></i></label>
+                        <input class="rad rating__input rating-1" id="rating-1" type="radio" value="1" name="ratings" />
+                        <label class="rating__label rating--1" for="rating-1"><i class="fa fa-times" aria-hidden="true"></i></label>
 
-                        <input class="rating__input rating-2" id="rating-2-2" type="radio" value="2" name="ratings" />
-                        <label class="rating__label rating--2" for="rating-2-2"><i class="fa fa-frown-o" aria-hidden="true"></i></label>
+                        <input class="rad rating__input rating-2" id="rating-2" type="radio" value="2" name="ratings" />
+                        <label class="rating__label rating--2" for="rating-2"><i class="fa fa-frown-o" aria-hidden="true"></i></label>
 
-                        <input class="rating__input rating-3" id="rating-3-2" type="radio" value="3" name="ratings" />
-                        <label class="rating__label rating--3" for="rating-3-2"><i class="fa fa-meh-o" aria-hidden="true"></i></label>
+                        <input class="rad rating__input rating-3" id="rating-3" type="radio" value="3" name="ratings" />
+                        <label class="rating__label rating--3" for="rating-3"><i class="fa fa-meh-o" aria-hidden="true"></i></label>
 
-                        <input class="rating__input rating-4" id="rating-4-2" type="radio" value="4" name="ratings" />
-                        <label class="rating__label rating--4" for="rating-4-2"><i class="fa fa-smile-o" aria-hidden="true"></i></label>
+                        <input class="rad rating__input rating-4" id="rating-4" type="radio" value="4" name="ratings" />
+                        <label class="rating__label rating--4" for="rating-4"><i class="fa fa-smile-o" aria-hidden="true"></i></label>
 
-                        <input class="rating__input rating-5" id="rating-5-2" type="radio" value="5" name="ratings" />
-                        <label class="rating__label rating--5" for="rating-5-2"><i class="fa fa-heart" aria-hidden="true"></i></label>
+                        <input class="rad rating__input rating-5" id="rating-5" type="radio" value="5" name="ratings" />
+                        <label class="rating__label rating--5" for="rating-5"><i class="fa fa-heart" aria-hidden="true"></i></label>
                     </div>
                 </h3>
                 <div class="form-group text-center">
