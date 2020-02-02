@@ -16,7 +16,6 @@ class CreateReviewsTable extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('details')->nullable();
-            $table->text('details')->nullable();
             $table->tinyInteger('rating');
             $table->double('latitude');
             $table->double('longitude');

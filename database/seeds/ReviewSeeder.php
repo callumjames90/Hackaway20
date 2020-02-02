@@ -17,17 +17,18 @@ class ReviewSeeder extends Seeder
     {
         $csvFileName = "Coord.csv";
         $csvFile = public_path('../database/seeds/' . $csvFileName);
-        $lines = $this->readCSV($csvFile,array('delimiter' => ','));
+        $lines = $this->read_csv($csvFile,array('delimiter' => ','));
         foreach ($lines as $line) {
             if (!$line) break;
-            $review = [
+            $review = new Review([
                 'created_at' => str_replace('T', ' ', explode('.', $line[2])[0]),
                 'latitude' => $line[0],
                 'longitude' => $line[1],
                 'rating' => random_int(0, 5),
                 'details' => Str::random(20)
-            ];
-            DB::table('reviews')->insert($review);
+            ]);
+            $review->save();
+            $this->get_cluster($review);
         }
     }
 
@@ -35,52 +36,75 @@ class ReviewSeeder extends Seeder
         return json_decode($this->curl_request("GET", "https://api.radar.io/v1/users"))->users;
     }
 
-    private function get_cluster($input) {
-        $coordinates = $input->location->coordinates;
-
+    private function get_cluster($review)
+    {
         // Get all clusters (DB) if any, otherwise make self a cluster
         $clusters = Cluster::all();
         if (count($clusters) == 0) {
-            // description type "circle" radius coordinates
-
+            // Add as cluster (link new cluster id with this)
+            $cluster = new Cluster([
+                'review_id' => $review->id,
+                'latitude' => $review->latitude,
+                'longitude' => $review->longitude,
+                'rating_avg' => $review->rating,
+                'rating_count' => 1
+            ]);
+            $cluster->save();
+            $cluster->reviews()->save($review);
+            return;
         }
 
         // For all clusters, use lat_long to get distance
+        $min = 180;
+        $min_id = -1;
+        foreach ($clusters as $cluster) {
+            $distance = $this->get_distance($review, $cluster);
+            if ($min > $distance) {
+                $min_id = $cluster->_id;
+                $min = $distance;
+            }
+        }
 
-        // If min_distance > threshold, make new cluster
-        // Else get cluster_id => min_distance
-        $curl = curl_init();
-
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://api.radar.io/v1/geofences",
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "GET",
-            CURLOPT_HTTPHEADER => array(
-                "Authorization: prj_live_sk_a9d412a222e6eff755691870f8f2d04070ff3124"
-            )
-        ));
-
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
-        curl_close($curl);
-
-        return json_decode($response);
+        $THRESHOLD = 4;
+        if ($min > $THRESHOLD) { // If deserving to be a new cluster
+            // Add as cluster (link new cluster id with this)
+            $cluster = new Cluster([
+                'review_id' => $review->id,
+                'latitude' => $review->latitude,
+                'longitude' => $review->longitude,
+                'rating_avg' => $review->rating,
+                'rating_count' => 1
+            ]);
+            $cluster->save();
+            $cluster->reviews()->save($review);
+            return;
+        } else {
+            $cluster = Cluster::findOrFail($min_id);
+            $cluster->reviews()->save($review);
+            $cluster->rating_count = floatval($cluster->rating_count) + 1.0;
+            $cluster->rating_avg = $this->alter_rating($review->rating, $cluster);
+            $cluster->save();
+        }
     }
 
-    /*
-     *  CREATE TABLE `markers` (
-          `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
-          `name` VARCHAR( 60 ) NOT NULL ,
-          `address` VARCHAR( 80 ) NOT NULL ,
-          `lat` FLOAT( 10, 6 ) NOT NULL ,
-          `lng` FLOAT( 10, 6 ) NOT NULL ,
-          `type` VARCHAR( 30 ) NOT NULL
-        ) ENGINE = MYISAM ;
-     */
+    private function alter_rating($new, $cluster) {
+        return (floatval($cluster->rating_avg) * (floatval($cluster->rating_count) - 1) + floatval($new))/(floatval($cluster->rating_count));
+    }
 
-    public function readCSV($csvFile, $array)
+    private function get_longitude_radians($a) {
+        return pi()*$a->longitude/180;
+    }
+
+    private function get_latitude_radians($a) {
+        return pi()*$a->longitude/90;
+    }
+
+    private function get_distance($a, $b) {
+        return acos(sin(floatval($a->latitude)) * sin(floatval($b->latitude)) + cos(floatval($a->latitude)) *
+                cos(floatval($b->latitude)) * cos(floatval($a->longitude) - floatval($b->longitude))) * 6371;
+    }
+
+    private function read_csv($csvFile, $array)
     {
         $file_handle = fopen($csvFile, 'r');
         while (!feof($file_handle)) {

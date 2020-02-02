@@ -12,13 +12,6 @@
             margin-top: -2.25%;
         }
     </style>
-
-    <script>
-        if ($('#checkbox').is(':checked')){
-
-        }
-    </script>
-
     <div id="map" class="container-fluid">
         <script>
             var map;
@@ -45,6 +38,7 @@
                             lng: position.coords.longitude
                         };
                         map.setCenter(pos);
+                        document.getElementById('latAndLon').value = pos.lat + "," + pos.lng;
                     });
                 }
 
@@ -75,7 +69,9 @@
                 </div>
             </div>
 
-            <form class="rating" name="revform">
+            <form class="rating" method="post" action="/review">
+                @csrf
+                <input type="hidden" value="" id="latAndLon" name="location"/>
                 <h3 class="rating-title text-center">Please review:
                     <div class="rating-list">
                         <input class="rating__input rating-1" id="rating-1-2" type="radio" value="1" name="ratings"/>
@@ -96,7 +92,7 @@
                 </h3>
                 <div class="form-group text-center">
                     <label for="description"> Describe the safety of the area: </label>
-                    <textarea class="form-control-create" placeholder="Description"></textarea>
+                    <textarea class="form-control" placeholder="Description" name="description"></textarea>
                     <button class="submit btn btn-primary">Submit Review</button>
                 </div>
             </form>
