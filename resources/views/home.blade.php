@@ -70,7 +70,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <button class="current btn-lg btn-info">Review Current Area</button>
+            <a href="/review"><button class="current btn-lg btn-info">Review Current Area</button></a>
         </div>
     </div>
 </div>
