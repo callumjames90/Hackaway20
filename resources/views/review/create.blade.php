@@ -6,6 +6,44 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
 
+    <style>
+        #map {
+            height: 80%;
+        }
+    </style>
+    <div id="map" class="container-fluid">
+        <script>
+            var map;
+
+            function initMap() {
+                var center = {lat: 0, lng: 0};
+                map = new google.maps.Map(document.getElementById('map'), {
+                    center: center,
+                    zoom: 8,
+                    draggable: false,
+                });
+                var marker = new google.maps.Marker({position: center, map: map});
+            }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPhnYv7qqmn9NK7IweTP07rggklVMCc2U&callback=initMap" async defer></script>
+    </div>
+
+    <script>
+        function getPosition(position, errorHandler) {
+            userLatitude = position.coords.latitude;
+            userLongitude = position.coords.longitude;
+            latlng = google.maps.LatLng(userLatitude, userLongitude);
+            document.getElementById("map").setCenter(latlng);
+        }
+
+        function setCurrentLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(getPosition);
+            }
+        }
+    </script>
+    <button onclick="setCurrentLocation()">Set Location</button>
+
     <div class="container-fluid mx-auto">
         <div class="row justify-content-center">
             <div class="top-section col-xl-8 col-lg-9 col-md-10 col-12 text-center mb-5">
