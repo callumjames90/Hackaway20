@@ -4,6 +4,13 @@
 
 @section('content')
 
+    <style>
+        #map {
+            //height: 80%;
+            margin-top: -2.5%;
+        }
+    </style>
+
 <div id="map" class="container-fluid" style="height: 80%">
     <script>
         var map;
@@ -63,7 +70,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-
+            <button class="current btn-lg btn-info">Review Current Area</button>
         </div>
     </div>
 </div>
