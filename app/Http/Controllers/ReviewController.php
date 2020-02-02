@@ -13,8 +13,8 @@ class ReviewController extends Controller
     public function store(Request $request) {
         $review = new Review();
         $location = explode(',', $request->input('location'));
-        $review->longitude = $location[0];
-        $review->latitude = $location[1];
+        $review->longitude = $location[1];
+        $review->latitude = $location[0];
         $review->user_id = Auth::user()->_id;
         $review->rating = $request->input('ratings');
         $review->details = $request->input('description');
