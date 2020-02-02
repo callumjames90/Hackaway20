@@ -41,7 +41,7 @@ class ReviewSeeder extends Seeder
         // Get all clusters (DB) if any, otherwise make self a cluster
         $clusters = Cluster::all();
         if (count($clusters) == 0) {
-            // description type "circle" radius coordinates
+            // add as cluster (link new cluster id with this)
 
         }
 

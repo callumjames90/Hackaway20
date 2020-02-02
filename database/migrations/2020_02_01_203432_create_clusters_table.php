@@ -15,10 +15,12 @@ class CreateClustersTable extends Migration
     {
         Schema::create('clusters', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('review_id');
             $table->double('latitude');
+            $table->double('longitude');
             $table->float('rating_avg');
             $table->integer('review_count');
-            $table->timestamps('longitude');
+            $table->timestamps();
         });
     }
 

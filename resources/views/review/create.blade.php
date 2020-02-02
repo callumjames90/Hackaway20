@@ -37,6 +37,7 @@
                             lng: position.coords.longitude
                         };
                         map.setCenter(pos);
+                        document.getElementById('latAndLon').value = pos.lat + "," + pos.lng;
                     });
                 }
 
@@ -67,7 +68,9 @@
                 </div>
             </div>
 
-            <form class="rating">
+            <form class="rating" method="post" action="/review">
+                @csrf
+                <input type="hidden" value="" id="latAndLon" name="location"/>
                 <h3 class="rating-title text-center">Please review:
                     <div class="rating-list">
                         <input class="rating__input rating-1" id="rating-1-2" type="radio" value="1" name="rating" /><label class="rating__label rating--1" for="rating-1-2"><i class="fa fa-times" aria-hidden="true"></i></label>
@@ -79,7 +82,7 @@
                 </h3>
                 <div class="form-group text-center">
                     <label for="description"> Describe the safety of the area: </label>
-                    <textarea class="form-control" placeholder="Description"></textarea>
+                    <textarea class="form-control" placeholder="Description" name="description"></textarea>
                     <button class="submit btn btn-primary">Submit Review</button>
                 </div>
             </form>
