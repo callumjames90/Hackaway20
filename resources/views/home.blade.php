@@ -4,22 +4,42 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
 
-                    You are logged in!
-                </div>
-            </div>
-        </div>
+    <style>
+        #map {
+            height: 80%;
+        }
+    </style>
+    <div id="map" class="container-fluid">
+        <script>
+            var map;
+
+            function initMap() {
+                var center = {lat: 0, lng: 0};
+                map = new google.maps.Map(document.getElementById('map'), {
+                    center: center,
+                    zoom: 4,
+                    draggable: true,
+                });
+
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        var pos = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        };
+                        map.setCenter(pos);
+                    });
+                }
+
+                @foreach($reviews as $review)
+                    var marker = new google.maps.Marker({position: { lat: {{ $review->latitude }}, lng: {{ $review->longitude }} }, map: map});
+                @endforeach
+            }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPhnYv7qqmn9NK7IweTP07rggklVMCc2U&callback=initMap" async defer></script>
     </div>
 </div>
 @endsection
