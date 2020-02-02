@@ -6,6 +6,25 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
 
+    <style>
+        #map {
+            height: 80%;
+        }
+    </style>
+    <div id="map" class="container-fluid">
+        <script>
+            var map;
+            function initMap() {
+                map = new google.maps.Map(document.getElementById('map'), {
+                    center: {lat: -34.397, lng: 150.644},
+                    zoom: 8,
+                    draggable: false
+                });
+            }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPhnYv7qqmn9NK7IweTP07rggklVMCc2U&callback=initMap" async defer></script>
+    </div>
+
     <div class="container">
         <div class = "row justify-content-center">
             <form class="form-style" method="POST" action="/">
