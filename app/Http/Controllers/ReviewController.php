@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Review;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
@@ -12,6 +13,7 @@ class ReviewController extends Controller
         $location = explode(',', $request->input('location'));
         $review->longitude = $location[0];
         $review->latitude = $location[1];
+        $review->user_id = Auth::user()->_id;
         $review->rating = $request->input('rating');
         $review->details = $request->input('description');
         $review->save();
