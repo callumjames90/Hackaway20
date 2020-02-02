@@ -19283,8 +19283,6 @@ module.exports = function(module) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-__webpack_require__(/*! ./radar */ "./resources/js/radar.js");
-
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -19319,46 +19317,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/js/radar.js":
-/*!*******************************!*\
-  !*** ./resources/js/radar.js ***!
-  \*******************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function RadarAPI(api_key, radius) {
-  this.api_key = api_key;
-  this.radius = radius;
-  this.api_root_endpoint = "https://api.radar.io/v1/";
-  this.api_geofences_endpoint = this.api_root_endpoint + "geofences";
-  this.xhttp = new XMLHttpRequest();
-
-  this.createReviewGeofence = function (longitude, latitude, username) {};
-
-  this.getTouchingGeofences = function (longitude, latitude) {};
-
-  this.createGeofence = function (longitude, latitude) {};
-
-  this.getGeofences = function () {
-    var jsonData = this.httpRequestJSON(this.xhttp, this.api_geofences_endpoint);
-    console.log(jsonData);
-  };
-
-  this.httpRequestJSON = function (xhttp, url) {
-    var HTTP_OK = 200;
-    var DONE_STATE = 4;
-
-    xhttp.onreadystatechange = function () {
-      if (this.readyState == DONE_STATE && this.status == HTTP_OK) {
-        var jsonData = JSON.parse(this.responseText);
-        return jsonData;
-      }
-    };
-  };
-}
-
-/***/ }),
-
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
@@ -19377,8 +19335,8 @@ function RadarAPI(api_key, radius) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/nam/PhpstormProjects/Hackaway20/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/nam/PhpstormProjects/Hackaway20/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Cal's Laptop\PhpstormProjects\Hackaway20\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Cal's Laptop\PhpstormProjects\Hackaway20\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
