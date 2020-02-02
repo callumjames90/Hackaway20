@@ -5,6 +5,7 @@ use App\Cluster;
 use App\Helpers\ClusterHelper;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
+use App\User;
 
 class ReviewSeeder extends Seeder
 {
@@ -29,6 +30,7 @@ class ReviewSeeder extends Seeder
                 'details' => Str::random(20)
             ]);
             $review->save();
+            User::all()->random(1)[0]->reviews()->save($review);
             ClusterHelper::get_cluster($review);
         }
     }

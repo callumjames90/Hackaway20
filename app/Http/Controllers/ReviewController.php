@@ -16,8 +16,9 @@ class ReviewController extends Controller
         $review->longitude = $location[0];
         $review->latitude = $location[1];
         $review->user_id = Auth::user()->_id;
-        $review->rating = $request->input('rating');
+        $review->rating = $request->input('ratings');
         $review->details = $request->input('description');
+        $review->user_id = Auth::id();
         $review->save();
 
         // Check if can be stored into a cluster
