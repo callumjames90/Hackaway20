@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Review;
+use App\Cluster;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,6 +25,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home', ['reviews' => Review::all()]);
+        return view('home', ['reviews' => Review::all(), 'clusters' => Cluster::all()]);
     }
 }
