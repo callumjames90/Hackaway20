@@ -17,4 +17,4 @@ Auth::routes();
 
 Route::get('/review', 'ReviewController@index');
 
-Route::get('/profile', 'ProfileController@index');
+Route::get('/profile', 'ProfileController@index')->name('profile');

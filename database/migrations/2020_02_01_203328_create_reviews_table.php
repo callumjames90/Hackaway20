@@ -17,6 +17,7 @@ class CreateReviewsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('radar_id');
             $table->text('details')->nullable();
+            $table->text('details')->nullable();
             $table->tinyInteger('rating');
             $table->integer('cluster_id')->references('id')->on('cluster');
             $table->integer('user_id')->references('id')->on('users');

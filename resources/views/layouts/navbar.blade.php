@@ -8,7 +8,7 @@
                 <a class="nav-link" href="/review">Review</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/profile">Profile</a>
+                <a class="nav-link {{ Request::route()->getName() === 'profile' ? 'active' : '' }}" href="/profile">Profile</a>
             </li>
         </ul>
     </div>
