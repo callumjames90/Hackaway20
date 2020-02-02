@@ -16,7 +16,7 @@
         var map;
 
         function initMap() {
-            var center = {lat: 51.4, lng: -0.56};
+            var center = {lat: 51.4215, lng: -0.5668};
 
             map = new google.maps.Map(document.getElementById('map'), {
                 center: center,
@@ -41,24 +41,16 @@
                     map.setCenter(pos);*/
 
                 var heatmapData = [
-                    new google.maps.LatLng(37.782, -122.447),
-                    new google.maps.LatLng(37.782, -122.445),
-                    new google.maps.LatLng(37.782, -122.443),
-                    new google.maps.LatLng(37.782, -122.441),
-                    new google.maps.LatLng(37.782, -122.439),
-                    new google.maps.LatLng(37.782, -122.437),
-                    new google.maps.LatLng(37.782, -122.435),
-                    new google.maps.LatLng(37.785, -122.447),
-                    new google.maps.LatLng(37.785, -122.445),
-                    new google.maps.LatLng(37.785, -122.443),
-                    new google.maps.LatLng(37.785, -122.441),
-                    new google.maps.LatLng(37.785, -122.439),
-                    new google.maps.LatLng(37.785, -122.437),
-                    new google.maps.LatLng(37.785, -122.435)
-                ];
+                    @foreach ($clusters as $cluster)
+                    {location: new google.maps.LatLng({{$cluster->latitude}}, {{$cluster->longitude}}), weight: {{$cluster->rating_avg}}},
+                    @endforeach
+                ]
 
                 heatmap = new google.maps.visualization.HeatmapLayer({
                     data: heatmapData
+                });
+                heatmap.setOptions({
+                    radius: 50,
                 });
                 heatmap.setMap(map);
             }

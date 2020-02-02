@@ -17,7 +17,7 @@
             var map;
 
             function initMap() {
-                var center = {lat: 51.4, lng: -0.56};
+                var center = {lat: 51.4215, lng: -0.5668};
                 map = new google.maps.Map(document.getElementById('map'), {
                     center: center,
                     zoom: 15,
@@ -38,7 +38,6 @@
                             lng: position.coords.longitude
                         };
                         map.setCenter(pos);
-                        document.getElementById('latAndLon').value = pos.lat + "," + pos.lng;
                     });
                 }
 
@@ -49,6 +48,7 @@
                 function placeMarker(location) {
                     marker.setPosition(location);
                     document.getElementById("latlng").innerHTML = location.toString();
+                    document.getElementById('latAndLon').value = location.toString().substring(1, location.toString().length - 1);
                 }
             }
         </script>
