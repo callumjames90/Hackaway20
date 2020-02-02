@@ -16,11 +16,17 @@
             var map;
 
             function initMap() {
-                var center = {lat: 0, lng: 0};
+                var center = {lat: 51.4, lng: -0.56};
                 map = new google.maps.Map(document.getElementById('map'), {
                     center: center,
-                    zoom: 8,
+                    zoom: 15,
                     draggable: false,
+                    zoomControl: false,
+                    mapTypeControl: false,
+                    scaleControl: false,
+                    rotateControl: false,
+                    fullscreenControl: false,
+                    streetViewControl: false,
                 });
                 var marker = new google.maps.Marker({position: center, map: map});
 
@@ -33,11 +39,21 @@
                         map.setCenter(pos);
                     });
                 }
+
+                google.maps.event.addListener(map, "click", function(event) {
+                    placeMarker(event.latLng);
+                });
+
+                function placeMarker(location) {
+                    marker.setPosition(location);
+                    document.getElementById("latlng").innerHTML = location.toString();
+                }
             }
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPhnYv7qqmn9NK7IweTP07rggklVMCc2U&callback=initMap" async defer></script>
     </div>
 
+    <p id="latlng" style="text-align: center"></p>
     <div class="container-fluid mx-auto">
         <div class="row justify-content-center">
             <div class="top-section col-xl-8 col-lg-9 col-md-10 col-12 text-center mb-5">
